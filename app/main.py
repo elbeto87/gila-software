@@ -1,22 +1,23 @@
-import logging
-
 from fastapi import FastAPI
 
+from app.enums import CategoryEnum
+from app.logger import logger
 from app.subscription.category import Category
 from .models import MessageModel, UserRegistrationModel
-
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
 
 app = FastAPI()
 
 users = []
 messages = []
 
+sports_category = Category(CategoryEnum.SPORTS)
+finance_category = Category(CategoryEnum.FINANCE)
+films_category = Category(CategoryEnum.FILMS)
+
 
 @app.get("/users")
 def get_users():
-    logger.info(f"Users: {users}")
+    logger.info(f"Getting users: {users}")
     return {"users": users}
 
 
