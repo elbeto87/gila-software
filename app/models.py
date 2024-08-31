@@ -1,14 +1,14 @@
 from pydantic import BaseModel
 
-from .enums import Category
+from .enums import CategoryEnum
 
 
 class MessageModel(BaseModel):
-    category: Category
+    category: CategoryEnum
     message: str
 
 
 class UserRegistrationModel(BaseModel):
     username: str
-    categories: list[Category]
+    categories: list[CategoryEnum]
     messages: list[MessageModel] = []

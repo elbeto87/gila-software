@@ -7,7 +7,7 @@ class TypeOfNotification(str, Enum):
     PUSH_NOTIFICATION = "Push"
 
 
-class Category(str, Enum):
+class CategoryEnum(str, Enum):
     SPORTS = "Sports"
     FINANCE = "Finance"
     FILMS = "Films"
