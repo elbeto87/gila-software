@@ -1,8 +1,14 @@
 from pydantic import BaseModel
 
-from app.enums import Category
+from .enums import Category
 
 
-class UserRegistration(BaseModel):
+class MessageModel(BaseModel):
+    category: Category
+    message: str
+
+
+class UserRegistrationModel(BaseModel):
     username: str
     categories: list[Category]
+    messages: list[MessageModel] = []
