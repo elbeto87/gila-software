@@ -1,14 +1,16 @@
 from fastapi import FastAPI
 
+from app.models import UserRegistration
+
 app = FastAPI()
 
 users = []
 messages = []
 
 
-@app.get("/")
-def read_root():
-    return {"message": "Hello, World!"}
+@app.get("/users")
+def get_users():
+    return {"users": users}
 
 
 @app.post("/send_message")
@@ -17,5 +19,6 @@ def send_message(category: str, message: str):
 
 
 @app.post("/register_user")
-def register_user(username: str, email: str, category: str):
-    return {"username": username, "email": email, "category": category}
+def register_user(user: UserRegistration):
+    users.append({"username": user.username, "category": user.categories})
+    return {"username": user.username, "category": user.categories}

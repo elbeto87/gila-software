@@ -2,12 +2,12 @@ from enum import Enum
 
 
 class TypeOfNotification(str, Enum):
-    SMS = "sms"
-    EMAIL = "email"
-    PUSH_NOTIFICATION = "push"
+    SMS = "SMS"
+    EMAIL = "Email"
+    PUSH_NOTIFICATION = "Push"
 
 
 class Category(str, Enum):
-    SPORTS = "sports"
-    FINANCE = "finance"
-    FILMS = "films"
+    SPORTS = "Sports"
+    FINANCE = "Finance"
+    FILMS = "Films"
