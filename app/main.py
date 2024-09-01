@@ -1,6 +1,5 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends
 
-from app.subscription.enums import CategoryEnum
 from app.logger import logger
 from app.subscription.category import Category
 from .schemas import MessageModel, UserRegistrationModel
