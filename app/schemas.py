@@ -18,6 +18,7 @@ class MessageModel(BaseModel):
             "message": self.message,
         }
 
+
 class UserModel(BaseModel):
     id: int
     name: str

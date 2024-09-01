@@ -16,6 +16,7 @@ def initialize_db():
     if not categories_table.all():
         categories_table.insert_multiple(default_categories)
 
+
 default_users = [
     {
         "id": 1,

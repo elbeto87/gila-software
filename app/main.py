@@ -14,24 +14,29 @@ initialize_db()
 def get_users():
     return users_table.all()
 
+
 @app.get("/categories", response_model=List[CategoryModel])
 def get_categories():
     return categories_table.all()
 
+
 @app.get("/messages", response_model=List[MessageModel])
 def get_messages():
     return messages_table.all()
+
 
 @app.get("/users/{user_id}/messages_received", response_model=dict)
 def get_messages_received(user_id: int):
     user = users_table.get(doc_id=user_id)
     return {"name": user["name"], "messages_received": user["messages_received"]}
 
+
 @app.post("/send_message")
 def send_message(message: MessageModel):
     messages_table.insert(message.model_dump())
     category = Category.from_string(message.category)
     category.notify_subscribers(message)
+
 
 @app.post("/default_data")
 def default_data():
@@ -47,5 +52,6 @@ def default_data():
 # Register new User
 # Register new Category
 # Register new Channel
+# README
 # Tests
 # Dockerize

@@ -1,8 +1,3 @@
-from logging import raiseExceptions
-
-from fastapi import Query
-from tinydb.table import Table
-
 from app.database import categories_table
 from app.logger import logger
 from app.schemas import MessageModel

@@ -1,5 +1,3 @@
-from email.headerregistry import MessageIDHeader
-
 from app.database import users_table
 from app.logger import logger
 from app.schemas import MessageModel
