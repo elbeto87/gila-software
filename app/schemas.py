@@ -1,6 +1,8 @@
+from typing import List
+
 from pydantic import BaseModel
 
-from app.subscription.enums import CategoryEnum
+from app.subscription.enums import CategoryEnum, ChannelEnum
 
 
 class MessageModel(BaseModel):
@@ -8,7 +10,10 @@ class MessageModel(BaseModel):
     message: str
 
 
-class UserRegistrationModel(BaseModel):
-    username: str
-    categories: list[CategoryEnum]
-    messages: list[MessageModel] = []
+class UserModel(BaseModel):
+    id: int
+    name: str
+    email: str
+    phone: str
+    subscribed: List[CategoryEnum]
+    channels: List[ChannelEnum]

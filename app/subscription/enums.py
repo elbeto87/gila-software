@@ -1,7 +1,7 @@
 from enum import Enum
 
 
-class TypeOfNotification(str, Enum):
+class ChannelEnum(str, Enum):
     SMS = "SMS"
     EMAIL = "Email"
     PUSH_NOTIFICATION = "Push"
