@@ -6,6 +6,7 @@ from app.database import initialize_db, users_table, categories_table, messages_
 from app.schemas import UserModel, CategoryModel, MessageModel
 from app.subscription.category import Category
 
+
 app = FastAPI()
 initialize_db()
 
