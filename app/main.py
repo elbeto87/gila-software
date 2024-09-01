@@ -1,18 +1,11 @@
 from fastapi import FastAPI
 
-from app.enums import CategoryEnum
+from app.subscription.enums import CategoryEnum
 from app.logger import logger
 from app.subscription.category import Category
-from .models import MessageModel, UserRegistrationModel
+from .schemas import MessageModel, UserRegistrationModel
 
 app = FastAPI()
-
-users = []
-messages = []
-
-sports_category = Category(CategoryEnum.SPORTS)
-finance_category = Category(CategoryEnum.FINANCE)
-films_category = Category(CategoryEnum.FILMS)
 
 
 @app.get("/users")

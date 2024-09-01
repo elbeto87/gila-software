@@ -1,4 +1,4 @@
-from app.enums import CategoryEnum
+from app.subscription.enums import CategoryEnum
 from app.main import logger
 
 
