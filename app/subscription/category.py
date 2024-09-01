@@ -1,5 +1,6 @@
+from app.logger import logger
 from app.subscription.enums import CategoryEnum
-from app.main import logger
+from app.subscription.subscriber import Subscriber
 
 
 class Category:
@@ -22,5 +23,6 @@ class Category:
     def notify_subscribers(self, message: str):
         logger.info(f"Sending message to {self.subscribers} in category {self.name}: {message}")
         for subscriber in self.subscribers:
+            subscriber = Subscriber.from_int(subscriber)
             logger.info(f"Sending message to {subscriber} in category {self.name}")
             subscriber.update(message)

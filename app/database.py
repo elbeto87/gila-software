@@ -5,6 +5,7 @@ from app.subscription.enums import CategoryEnum, ChannelEnum
 db = TinyDB('db.json')
 users_table = db.table('users')
 categories_table = db.table('categories')
+messages_table = db.table('messages')
 
 
 def initialize_db():
@@ -43,7 +44,7 @@ default_users = [
 ]
 
 default_categories = [
-    {"name": CategoryEnum.SPORTS, "subscribers": []},
-    {"name": CategoryEnum.FILMS, "subscribers": []},
-    {"name": CategoryEnum.FINANCE, "subscribers": []},
+    {"name": CategoryEnum.SPORTS, "subscribers": [1]},
+    {"name": CategoryEnum.FILMS, "subscribers": [2, 3]},
+    {"name": CategoryEnum.FINANCE, "subscribers": [1]},
 ]

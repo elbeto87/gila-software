@@ -1,13 +1,17 @@
-from app.main import logger
-
-
 class Subscriber:
 
-    def __init__(self, name: str, type_of_notification: list[str]):
+    def __init__(self, user_id, name, email, phone, subscribed, channels):
+        self.id = user_id
         self.name = name
-        self.type_of_notification = type_of_notification
+        self.email = email
+        self.phone = phone
+        self.subscribed = subscribed
+        self.channels = channels
+
+    @classmethod
+    def from_int(cls, subscriber: int):
+        return cls(**users_table.get(doc_id=subscriber))
 
     def update(self, message):
-        logger.info(f"Sending message to {self.name}: {message}")
         for notification in self.type_of_notification:
             notification.send_message(message)
