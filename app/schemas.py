@@ -25,6 +25,7 @@ class UserModel(BaseModel):
     phone: str
     subscribed: List[CategoryEnum]
     channels: List[ChannelEnum]
+    messages_received: List[dict]
 
 
 class CategoryModel(BaseModel):

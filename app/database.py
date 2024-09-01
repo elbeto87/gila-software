@@ -23,7 +23,8 @@ default_users = [
         "email": "grace@example.com",
         "phone": "2223334444",
         "subscribed": [CategoryEnum.SPORTS, CategoryEnum.FINANCE],
-        "channels": [ChannelEnum.EMAIL]
+        "channels": [ChannelEnum.EMAIL],
+        "messages_received": []
     },
     {
         "id": 2,
@@ -31,7 +32,8 @@ default_users = [
         "email": "henry@example.com",
         "phone": "5556667777",
         "subscribed": [CategoryEnum.FILMS],
-        "channels": [ChannelEnum.PUSH_NOTIFICATION, ChannelEnum.SMS]
+        "channels": [ChannelEnum.PUSH_NOTIFICATION, ChannelEnum.SMS],
+        "messages_received": []
     },
     {
         "id": 3,
@@ -39,7 +41,8 @@ default_users = [
         "email": "isabella@example.com",
         "phone": "8889990000",
         "subscribed": [CategoryEnum.FILMS],
-        "channels": [ChannelEnum.EMAIL]
+        "channels": [ChannelEnum.EMAIL],
+        "messages_received": []
     },
 ]
 

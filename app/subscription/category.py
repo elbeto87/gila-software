@@ -5,6 +5,7 @@ from tinydb.table import Table
 
 from app.database import categories_table
 from app.logger import logger
+from app.schemas import MessageModel
 from app.subscription.enums import CategoryEnum
 from app.subscription.subscriber import Subscriber
 
@@ -30,8 +31,8 @@ class Category:
         logger.info(f"Adding {username} to category {self.name}")
         self.subscribers.append(username)
 
-    def notify_subscribers(self, message: str):
+    def notify_subscribers(self, message: MessageModel):
         for subscriber in self.subscribers:
             subscriber = Subscriber.from_int(subscriber)
             logger.info(f"Sending message to '{subscriber.name}' in category '{self.name}'")
-            subscriber.update(message)
+            subscriber.update(message=message)

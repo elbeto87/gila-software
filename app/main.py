@@ -22,24 +22,25 @@ def get_categories():
 def get_messages():
     return messages_table.all()
 
-@app.delete("/delete_all")
-def delete_all():
-    users_table.truncate()
-    categories_table.truncate()
-    messages_table.truncate()
-    return {"message": "All tables has been deleted"}
-
-@app.post("/default_data")
-def default_data():
-    users_table.insert_multiple(default_users)
-    categories_table.insert_multiple(default_categories)
-    return {"message": "Default data has been inserted"}
+@app.get("/users/{user_id}/messages_received", response_model=dict)
+def get_messages_received(user_id: int):
+    user = users_table.get(doc_id=user_id)
+    return {"name": user["name"], "messages_received": user["messages_received"]}
 
 @app.post("/send_message")
 def send_message(message: MessageModel):
     messages_table.insert(message.model_dump())
     category = Category.from_string(message.category)
-    category.notify_subscribers(message.message)
+    category.notify_subscribers(message)
+
+@app.post("/default_data")
+def default_data():
+    users_table.truncate()
+    categories_table.truncate()
+    messages_table.truncate()
+    users_table.insert_multiple(default_users)
+    categories_table.insert_multiple(default_categories)
+    return {"message": "Default data has been inserted"}
 #
 # #
 # @app.post("/register_user")
