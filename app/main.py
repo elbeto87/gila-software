@@ -35,12 +35,11 @@ def default_data():
     categories_table.insert_multiple(default_categories)
     return {"message": "Default data has been inserted"}
 
-# @app.post("/send_message")
-# def send_message(message: MessageModel):
-#     messages_table.insert({"category": message.category, "message": message.message})
-#     category = Category.from_string(message.category)
-#     category.notify_subscribers(message.message)
-#     return {"category": message.category, "message": message.message}
+@app.post("/send_message")
+def send_message(message: MessageModel):
+    messages_table.insert(message.model_dump())
+    category = Category.from_string(message.category)
+    category.notify_subscribers(message.message)
 #
 # #
 # @app.post("/register_user")

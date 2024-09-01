@@ -1,3 +1,9 @@
+from logging import raiseExceptions
+
+from fastapi import Query
+from tinydb.table import Table
+
+from app.database import categories_table
 from app.logger import logger
 from app.subscription.enums import CategoryEnum
 from app.subscription.subscriber import Subscriber
@@ -5,24 +11,27 @@ from app.subscription.subscriber import Subscriber
 
 class Category:
 
-    def __init__(self, name: CategoryEnum):
+    def __init__(self, name: CategoryEnum, subscribers: list):
         self.name = name
-        self.subscribers = []
+        self.subscribers = subscribers
 
     def __str__(self):
         return self.name
 
     @classmethod
-    def from_string(cls, category: CategoryEnum):
-        return cls(category.value)
+    def from_string(cls, category: str) -> 'Category':
+        categories = categories_table.all()
+        category_found = next((c for c in categories if c['name'] == category), None)
+        if not category_found:
+            raise ValueError(f"Category '{category}' not found")
+        return cls(**category_found)
 
     def add_subscriber(self, username: str):
         logger.info(f"Adding {username} to category {self.name}")
         self.subscribers.append(username)
 
     def notify_subscribers(self, message: str):
-        logger.info(f"Sending message to {self.subscribers} in category {self.name}: {message}")
         for subscriber in self.subscribers:
             subscriber = Subscriber.from_int(subscriber)
-            logger.info(f"Sending message to {subscriber} in category {self.name}")
+            logger.info(f"Sending message to '{subscriber.name}' in category '{self.name}'")
             subscriber.update(message)
