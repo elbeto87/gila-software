@@ -41,12 +41,11 @@ def default_data():
     users_table.insert_multiple(default_users)
     categories_table.insert_multiple(default_categories)
     return {"message": "Default data has been inserted"}
-#
-# #
-# @app.post("/register_user")
-# def register_user(user: UserModel):
-#     users_table.insert(user.model_dump())
-#     for category in user.categories:
-#         category = Category.from_string(category)
-#         category.add_subscriber(user.username)
-#     return {"username": user.username, "category": user.categories}
+
+
+# ID should be the hash of the name (change default_users)
+# Register new User
+# Register new Category
+# Register new Channel
+# Tests
+# Dockerize
