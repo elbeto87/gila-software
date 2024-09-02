@@ -15,3 +15,8 @@ def is_there_an_empty_field(user_to_add: dict):
             continue
         if not value:
             raise HTTPException(status_code=400, detail=f"Field {key} is empty")
+
+
+def is_category_name_duplicated(category_name: str):
+    if users_table.search(Query().name == category_name):
+        raise HTTPException(status_code=400, detail="Category name already exists")

@@ -5,7 +5,7 @@ from fastapi import FastAPI
 from app.database import initialize_db, users_table, categories_table, messages_table, default_users, default_categories
 from app.schemas import UserModel, CategoryModel, MessageModel
 from app.subscription.category import Category
-from app.utils import is_id_duplicated, is_there_an_empty_field
+from app.utils import is_id_duplicated, is_there_an_empty_field, is_category_name_duplicated
 
 app = FastAPI()
 initialize_db()
@@ -33,6 +33,12 @@ def create_user(user: UserModel):
     is_there_an_empty_field(user_to_add)
     users_table.insert(user.model_dump())
     return user
+
+@app.post("/create_category", response_model=CategoryModel)
+def create_category(category: CategoryModel):
+    categories_table.insert(category.model_dump())
+    is_category_name_duplicated(category.name)
+    return category
 
 
 @app.delete("/delete_user/{user_id}")
@@ -66,7 +72,6 @@ def default_data():
 
 
 # ID should be the hash of the name (change default_users)
-# Register new User
 # Register new Category
 # Register new Channel
 # README
