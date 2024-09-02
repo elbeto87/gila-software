@@ -70,6 +70,7 @@ def send_message(message: MessageModel):
     messages_table.insert(message_to_send)
     category = Category.from_string(message_to_send["category"])
     category.notify_subscribers(message_to_send)
+    return {"message": "Message has been sent"}
 
 
 @app.post("/default_data")
