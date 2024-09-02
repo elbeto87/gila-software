@@ -9,6 +9,14 @@ Before you begin, ensure you have the following installed:
 - **Python 3.10**: You can download it from [python.org](https://www.python.org/).
 - **pip**: Python package installer, which typically comes with Python.
 
+## Tests
+
+To run the tests, execute the following command:
+
+```bash
+pytest
+```
+
 ## Installation (locally)
 
 Follow these steps to get the project running locally:
@@ -110,3 +118,6 @@ The API has the following endpoints:
     POST /default_data
     ```
    
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
