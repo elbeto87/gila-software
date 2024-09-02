@@ -150,3 +150,7 @@ cython_debug/
 
 # PyCharm
 .idea/
+
+# TinyDB
+db.json
+test_db.json
