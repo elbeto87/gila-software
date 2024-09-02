@@ -63,4 +63,50 @@ Follow these steps to get the project running locally:
    
 ## Usage
 
-TBD
+The API has the following endpoints:
+
+1. **Get all the users**:
+    ```bash
+    GET /users
+    ```
+   
+2. **Gett all the categories**:
+    ```bash
+    GET /categories
+    ```
+
+3. **Get all the messages sent**:
+    ```bash
+    GET /messages
+    ```
+   
+4. **Create a new user**:
+    ```bash
+    POST /create_user
+    ```
+   
+5. **Create a new category**:
+    ```bash
+    POST /create_category
+    ```
+   
+6. **Delete a user**:
+    ```bash
+    DELETE /delete_user/{user_id}
+    ```
+   
+7. **Delete a category**:
+    ```bash
+    DELETE /delete_category/{category_id}
+    ```
+   
+8. **Send a message**:
+    ```bash
+    POST /send_message
+    ```
+   
+9. **Revert to the default data**:
+    ```bash
+    POST /default_data
+    ```
+   
