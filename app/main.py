@@ -35,6 +35,7 @@ def create_user(user: UserModel):
     users_table.insert(user.model_dump())
     return user
 
+
 @app.post("/create_category", response_model=CategoryModel)
 def create_category(category: CategoryModel):
     categories_table.insert(category.model_dump())
@@ -78,10 +79,7 @@ def default_data():
     categories_table.insert_multiple(default_categories)
     return {"message": "Default data has been inserted"}
 
-
-
 # ID should be the hash of the name (change default_users)
-# Register new Category
 # Register new Channel
 # README
 # Tests
