@@ -1,6 +1,7 @@
 from typing import List
 
 from fastapi import FastAPI
+from tinydb import Query
 
 from app.database import initialize_db, users_table, categories_table, messages_table, default_users, default_categories
 from app.schemas import UserModel, CategoryModel, MessageModel
@@ -43,8 +44,16 @@ def create_category(category: CategoryModel):
 
 @app.delete("/delete_user/{user_id}")
 def delete_user(user_id: int):
-    users_table.remove(doc_ids=[user_id])
+    result = users_table.get(Query().id == user_id)
+    users_table.remove(doc_ids=[result.doc_id])
     return {"message": "User has been deleted"}
+
+
+@app.delete("/delete_category/{category_name}")
+def delete_category(category_name: str):
+    result = categories_table.get(Query().name == category_name)
+    categories_table.remove(doc_ids=[result.doc_id])
+    return {"message": "Category has been deleted"}
 
 
 @app.get("/users/{user_id}/messages_received", response_model=dict)

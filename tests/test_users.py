@@ -4,7 +4,7 @@ from app.subscription.enums import CategoryEnum, ChannelEnum
 from tests.conftest import client
 
 
-class TestAddingUser:
+class TestUsers:
 
     @classmethod
     def setup_class(cls):

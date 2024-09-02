@@ -11,3 +11,4 @@ class CategoryEnum(str, Enum):
     SPORTS = "Sports"
     FINANCE = "Finance"
     FILMS = "Films"
+    EDUCATION = "Education"
