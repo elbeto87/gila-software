@@ -5,7 +5,7 @@ from fastapi import FastAPI
 from app.database import initialize_db, users_table, categories_table, messages_table, default_users, default_categories
 from app.schemas import UserModel, CategoryModel, MessageModel
 from app.subscription.category import Category
-
+from app.utils import is_id_duplicated, is_there_an_empty_field
 
 app = FastAPI()
 initialize_db()
@@ -24,6 +24,21 @@ def get_categories():
 @app.get("/messages", response_model=List[MessageModel])
 def get_messages():
     return messages_table.all()
+
+
+@app.post("/create_user", response_model=UserModel)
+def create_user(user: UserModel):
+    user_to_add = user.model_dump()
+    is_id_duplicated(user_to_add["id"])
+    is_there_an_empty_field(user_to_add)
+    users_table.insert(user.model_dump())
+    return user
+
+
+@app.delete("/delete_user/{user_id}")
+def delete_user(user_id: int):
+    users_table.remove(doc_ids=[user_id])
+    return {"message": "User has been deleted"}
 
 
 @app.get("/users/{user_id}/messages_received", response_model=dict)
@@ -47,6 +62,7 @@ def default_data():
     users_table.insert_multiple(default_users)
     categories_table.insert_multiple(default_categories)
     return {"message": "Default data has been inserted"}
+
 
 
 # ID should be the hash of the name (change default_users)
