@@ -22,13 +22,13 @@ class Subscriber:
             raise ValueError(f"User '{user_found}' not found")
         return cls(**user_found)
 
-    def update(self, message: MessageModel):
+    def update(self, message: dict):
         for channel in self.channels:
             logger.info(f"Using channel '{channel}': {message}")
             self.message_received.append(
                 {
                     "channel": channel,
-                    "message": message.model_dump()
+                    "message": message["message"],
                 }
             )
             users_table.update({"messages_received": self.message_received}, doc_ids=[self.id])

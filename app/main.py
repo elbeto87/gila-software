@@ -38,8 +38,8 @@ def create_user(user: UserModel):
 
 @app.post("/create_category", response_model=CategoryModel)
 def create_category(category: CategoryModel):
-    categories_table.insert(category.model_dump())
     is_category_name_duplicated(category.name)
+    categories_table.insert(category.model_dump())
     return category
 
 
@@ -65,9 +65,11 @@ def get_messages_received(user_id: int):
 
 @app.post("/send_message")
 def send_message(message: MessageModel):
-    messages_table.insert(message.model_dump())
-    category = Category.from_string(message.category)
-    category.notify_subscribers(message)
+    message_to_send = message.model_dump()
+    is_there_an_empty_field(message_to_send)
+    messages_table.insert(message_to_send)
+    category = Category.from_string(message_to_send["category"])
+    category.notify_subscribers(message_to_send)
 
 
 @app.post("/default_data")
@@ -80,7 +82,6 @@ def default_data():
     return {"message": "Default data has been inserted"}
 
 # ID should be the hash of the name (change default_users)
-# Register new Channel
 # README
 # Tests
 # Dockerize

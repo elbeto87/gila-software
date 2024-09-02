@@ -19,8 +19,9 @@ class TestUsers:
         }
 
     def test_adding_user(self, default_data):
-        client.post("/create_user", json=self.client_data)
+        response = client.post("/create_user", json=self.client_data)
 
+        assert response.status_code == HTTPStatus.OK
         assert client.get("/users").json()[-1] == self.client_data
 
     def test_remove_user(self, default_data):

@@ -1,5 +1,6 @@
 from http import HTTPStatus
 
+from app.database import categories_table
 from app.subscription.enums import CategoryEnum
 from tests.conftest import client
 
@@ -14,8 +15,9 @@ class TestCategories:
         }
 
     def test_adding_category(self, default_data):
-        client.post("/create_category", json=self.category_data)
+        response = client.post("/create_category", json=self.category_data)
 
+        assert response.status_code == HTTPStatus.OK
         assert client.get("/categories").json()[-1] == self.category_data
 
     def test_remove_category(self, default_data):

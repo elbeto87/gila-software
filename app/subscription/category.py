@@ -26,7 +26,7 @@ class Category:
         logger.info(f"Adding {username} to category {self.name}")
         self.subscribers.append(username)
 
-    def notify_subscribers(self, message: MessageModel):
+    def notify_subscribers(self, message: dict):
         for subscriber in self.subscribers:
             subscriber = Subscriber.from_int(subscriber)
             logger.info(f"Sending message to '{subscriber.name}' in category '{self.name}'")
