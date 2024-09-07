@@ -19,7 +19,7 @@ def initialize_db():
 
 default_users = [
     {
-        "id": 1,
+        "id": hash("Grace"),
         "name": "Grace",
         "email": "grace@example.com",
         "phone": "2223334444",
@@ -28,7 +28,7 @@ default_users = [
         "messages_received": []
     },
     {
-        "id": 2,
+        "id": hash("Henry"),
         "name": "Henry",
         "email": "henry@example.com",
         "phone": "5556667777",
@@ -37,7 +37,7 @@ default_users = [
         "messages_received": []
     },
     {
-        "id": 3,
+        "id": hash("Isabella"),
         "name": "Isabella",
         "email": "isabella@example.com",
         "phone": "8889990000",
