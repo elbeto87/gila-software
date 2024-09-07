@@ -73,50 +73,50 @@ Follow these steps to get the project running locally:
 
 The API has the following endpoints:
 
-1. **Get all the users**:
-    ```bash
-    GET /users
-    ```
-   
-2. **Gett all the categories**:
-    ```bash
-    GET /categories
-    ```
+### 1. Get all users
+**GET /users**
 
-3. **Get all the messages sent**:
-    ```bash
-    GET /messages
-    ```
-   
-4. **Create a new user**:
-    ```bash
-    POST /create_user
-    ```
-   
-5. **Create a new category**:
-    ```bash
-    POST /create_category
-    ```
-   
-6. **Delete a user**:
-    ```bash
-    DELETE /delete_user/{user_id}
-    ```
-   
-7. **Delete a category**:
-    ```bash
-    DELETE /delete_category/{category_id}
-    ```
-   
-8. **Send a message**:
-    ```bash
-    POST /send_message
-    ```
-   
-9. **Revert to the default data**:
-    ```bash
-    POST /default_data
-    ```
+Retrieve a list of all registered users.
+
+### 2. Get all categories
+**GET /categories**
+
+Fetch all available categories.
+
+### 3. Get all messages sent
+**GET /messages**
+
+Get a list of all messages sent to users.
+
+### 4. Create a new user
+**POST /create_user**
+
+Add a new user to the system.
+
+### 5. Create a new category
+**POST /create_category**
+
+Add a new category to the system.
+
+### 6. Delete a user
+**DELETE /delete_user/{user_id}**
+
+Remove a user by ID.
+
+### 7. Delete a category
+**DELETE /delete_category/{category_id}**
+
+Remove a category by ID.
+
+### 8. Send a message
+**POST /send_message**
+
+Send a message to a user.
+
+### 9. Revert to default data
+**POST /default_data**
+
+Reset the data to the default values.
    
 ## License
 
