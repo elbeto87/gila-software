@@ -13,6 +13,18 @@ class Notification:
     def send_message(self, user: str, message: str):
         raise NotImplementedError()
 
+    @classmethod
+    def from_str(cls, channel: str) -> 'Notification':
+        match channel:
+            case ChannelEnum.PUSH_NOTIFICATION:
+                return PushNotification()
+            case ChannelEnum.EMAIL:
+                return EmailNotification()
+            case ChannelEnum.SMS:
+                return SMSNotification()
+            case _:
+                raise ValueError(f"Channel '{channel}' not found")
+
 
 class PushNotification(Notification):
 
@@ -20,7 +32,7 @@ class PushNotification(Notification):
         super().__init__(ChannelEnum.PUSH_NOTIFICATION)
 
     def send_message(self, user: str, message: str):
-        logger.info(f"Sending push notification to {user}: {message}")
+        logger.info(f"Sending PUSH notification to {user}: {message}")
 
 
 class EmailNotification(Notification):
@@ -29,7 +41,7 @@ class EmailNotification(Notification):
         super().__init__(ChannelEnum.EMAIL)
 
     def send_message(self, user: str, message: str):
-        logger.info(f"Sending email to {user}: {message}")
+        logger.info(f"Sending Email to {user}: {message}")
 
 
 class SMSNotification(Notification):

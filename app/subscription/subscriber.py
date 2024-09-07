@@ -2,6 +2,7 @@ from tinydb import Query
 
 from app.database import users_table
 from app.logger import logger
+from app.subscription.channels import Notification
 
 
 class Subscriber:
@@ -25,7 +26,7 @@ class Subscriber:
 
     def update(self, message: dict):
         for channel in self.channels:
-            logger.info(f"Using channel '{channel}': {message}")
+            Notification.from_str(channel).send_message(self.name, message["message"])
             self.message_received.append(
                 {
                     "channel": channel,

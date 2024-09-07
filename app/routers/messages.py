@@ -24,6 +24,6 @@ def send_message(message: MessageModel):
     message_to_send = message.model_dump()
     is_there_an_empty_field(message_to_send)
     messages_table.insert(message_to_send)
-    category = Category.from_string(message_to_send["category"])
+    category = Category.from_str(message_to_send["category"])
     category.notify_subscribers(message_to_send)
     return {"message": "Message has been sent"}

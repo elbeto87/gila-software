@@ -5,8 +5,8 @@ from tinydb import Query
 
 from app.database import users_table
 from app.schemas import UserModel, UserCreationModel
-from app.utils import is_id_duplicated, is_there_an_empty_field
-
+from app.subscription.category import Category
+from app.utils import is_id_duplicated, is_there_an_empty_field, add_suscribers_to_category
 
 router = APIRouter(
     prefix="/users",
@@ -33,7 +33,9 @@ def create_user(user: UserCreationModel):
     ).model_dump()
     is_id_duplicated(user_to_add["id"])
     is_there_an_empty_field(user_to_add)
+    add_suscribers_to_category(user_to_add["subscribed"], user_to_add["id"])
     users_table.insert(user_to_add)
+
     return user_to_add
 
 @router.delete("/{user_id}")
