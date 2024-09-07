@@ -16,16 +16,16 @@ class TestSendingMessage:
 
 
     def test_sending_message(self, default_data):
-        response = client.post("/send_message", json=self.message_data)
+        response = client.post("/messages/", json=self.message_data)
 
         assert response.status_code == HTTPStatus.OK
-        assert client.get("/messages").json()[-1] == self.message_data
+        assert client.get("/messages/").json()[-1] == self.message_data
 
 
     def test_sending_message_with_invalid_category(self, default_data):
         message_data = self.message_data.copy()
         message_data["category"] = "Invalid Category"
-        response = client.post("/send_message", json=message_data)
+        response = client.post("/messages/", json=message_data)
 
         assert response.status_code == HTTPStatus.UNPROCESSABLE_ENTITY
         assert response.json()["detail"][0]["msg"] == "Input should be 'Sports', 'Finance', 'Films' or 'Education'"
@@ -33,13 +33,13 @@ class TestSendingMessage:
     def test_sending_message_without_message(self, default_data):
         message_data = self.message_data.copy()
         message_data["message"] = ""
-        response = client.post("/send_message", json=message_data)
+        response = client.post("/messages/", json=message_data)
 
         assert response.status_code == HTTPStatus.BAD_REQUEST
         assert response.json() == {"detail": "Field message is empty"}
 
     def test_message_is_received(self, default_data):
-        client.post("/send_message", json=self.message_data)
+        client.post("/messages/", json=self.message_data)
         response = client.get("/users/2/messages_received")
 
         assert response.status_code == HTTPStatus.OK

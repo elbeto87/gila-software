@@ -1,6 +1,7 @@
+from tinydb import Query
+
 from app.database import users_table
 from app.logger import logger
-from app.schemas import MessageModel
 
 
 class Subscriber:
@@ -31,4 +32,4 @@ class Subscriber:
                     "message": message["message"],
                 }
             )
-            users_table.update({"messages_received": self.message_received}, doc_ids=[self.id])
+            users_table.update({"messages_received": self.message_received}, cond=Query().id == self.id)

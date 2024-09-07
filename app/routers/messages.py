@@ -15,11 +15,11 @@ router = APIRouter(
 )
 
 
-@router.get("/messages", response_model=List[MessageModel])
+@router.get("/", response_model=List[MessageModel])
 def get_messages():
     return messages_table.all()
 
-@router.post("/send_message")
+@router.post("/")
 def send_message(message: MessageModel):
     message_to_send = message.model_dump()
     is_there_an_empty_field(message_to_send)

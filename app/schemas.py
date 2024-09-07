@@ -29,6 +29,14 @@ class UserModel(BaseModel):
     messages_received: List[dict]
 
 
+class UserCreationModel(BaseModel):
+    name: str
+    email: str
+    phone: str
+    subscribed: List[CategoryEnum]
+    channels: List[ChannelEnum]
+
+
 class CategoryModel(BaseModel):
     name: CategoryEnum
     subscribers: List[int]

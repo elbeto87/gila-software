@@ -1,6 +1,5 @@
 from app.database import categories_table
 from app.logger import logger
-from app.schemas import MessageModel
 from app.subscription.enums import CategoryEnum
 from app.subscription.subscriber import Subscriber
 
