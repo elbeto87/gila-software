@@ -19,11 +19,13 @@ router = APIRouter(
 def get_categories():
     return categories_table.all()
 
+
 @router.post("/", response_model=CategoryModel)
 def create_category(category: CategoryModel):
     is_category_name_duplicated(category.name)
     categories_table.insert(category.model_dump())
     return category
+
 
 @router.delete("/{category_name}")
 def delete_category(category_name: str):

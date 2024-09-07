@@ -1,7 +1,6 @@
 from tinydb import Query
 
 from app.database import users_table
-from app.logger import logger
 from app.subscription.channels import Notification
 
 

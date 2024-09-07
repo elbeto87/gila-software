@@ -1,6 +1,5 @@
 from http import HTTPStatus
 
-from app.database import categories_table
 from app.subscription.enums import CategoryEnum
 from tests.conftest import client
 

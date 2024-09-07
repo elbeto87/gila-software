@@ -19,6 +19,7 @@ router = APIRouter(
 def get_messages():
     return messages_table.all()
 
+
 @router.post("/")
 def send_message(message: MessageModel):
     message_to_send = message.model_dump()

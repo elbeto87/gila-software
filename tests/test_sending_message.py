@@ -14,13 +14,11 @@ class TestSendingMessage:
             "message": "New film is Godfather",
         }
 
-
     def test_sending_message(self, default_data):
         response = client.post("/messages/", json=self.message_data)
 
         assert response.status_code == HTTPStatus.OK
         assert client.get("/messages/").json()[-1] == self.message_data
-
 
     def test_sending_message_with_invalid_category(self, default_data):
         message_data = self.message_data.copy()
