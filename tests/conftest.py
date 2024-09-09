@@ -10,4 +10,4 @@ test_db = TinyDB('test_db.json')
 
 @pytest.fixture(scope="function")
 def default_data():
-    client.post("/default_data")
+    yield client.post("/default_data")

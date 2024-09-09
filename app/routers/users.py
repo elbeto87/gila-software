@@ -41,7 +41,7 @@ def create_user(user: UserCreationModel):
 
 
 @router.delete("/{user_id}")
-def delete_user(user_id: int):
+def delete_user(user_id: str):
     result = users_table.get(Query().id == user_id)
     users_table.remove(doc_ids=[result.doc_id])
     return {"message": "User has been deleted"}

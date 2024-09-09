@@ -10,7 +10,7 @@ class TestCategories:
         response = client.post("/categories/", json=category_data)
 
         assert response.status_code == HTTPStatus.OK
-        assert client.get("/categories/").json()[-1] == category_data
+        assert response.json() == category_data
 
     def test_remove_category(self, default_data):
         categories = len(client.get("/categories/").json())

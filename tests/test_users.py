@@ -1,7 +1,8 @@
 from http import HTTPStatus
 
+from app.database import users_table, categories_table
 from tests.conftest import client
-from tests.test_data import client_data
+from tests.test_data import client_data, category_data
 
 
 class TestUsers:
@@ -38,3 +39,14 @@ class TestUsers:
 
         assert response.status_code == HTTPStatus.BAD_REQUEST
         assert response.json() == {"detail": f"Field {field_to_test} is empty"}
+
+    def test_adding_new_subscription(self, default_data):
+        category_response = client.post("/categories/", json=category_data)
+        category_name = category_response.json()["name"]
+
+        client.put(f"/users/957748080764321000/subscribe_to_category/{category_name}")
+
+        response = client.get(f"/users/957748080764321000/messages_received")
+
+        assert response.status_code == HTTPStatus.OK
+        assert response.json() == {"name": "Henry", "messages_received": []}
