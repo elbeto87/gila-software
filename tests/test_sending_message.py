@@ -2,7 +2,7 @@ from http import HTTPStatus
 
 from app.database import users_table
 from tests.conftest import client
-from tests.test_data import message_data, client_data, category_data, client_data_with_education, message_education_data
+from tests.test_data import message_data, category_data, client_data_with_education, message_education_data
 
 
 class TestSendingMessage:
