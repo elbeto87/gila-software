@@ -20,7 +20,7 @@ class MessageModel(BaseModel):
 
 
 class UserModel(BaseModel):
-    id: int
+    id: str
     name: str
     email: str
     phone: str
@@ -30,13 +30,13 @@ class UserModel(BaseModel):
 
 
 class UserCreationModel(BaseModel):
-    name: str
-    email: str
-    phone: str
-    subscribed: List[CategoryEnum]
-    channels: List[ChannelEnum]
+    name: str = "John Doe"
+    email: str = "john_doe@gmail.com"
+    phone: str = "111-222-3333"
+    subscribed: List[CategoryEnum] = [CategoryEnum.FILMS, CategoryEnum.FINANCE]
+    channels: List[ChannelEnum] = [ChannelEnum.EMAIL]
 
 
 class CategoryModel(BaseModel):
     name: CategoryEnum
-    subscribers: List[int]
+    subscribers: List[str]

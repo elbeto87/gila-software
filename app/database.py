@@ -19,7 +19,7 @@ def initialize_db():
 
 default_users = [
     {
-        "id": 681879266808159400,
+        "id": "681879266808159400",
         "name": "Grace",
         "email": "grace@example.com",
         "phone": "2223334444",
@@ -28,7 +28,7 @@ default_users = [
         "messages_received": []
     },
     {
-        "id": 957748080764321000,
+        "id": "957748080764321000",
         "name": "Henry",
         "email": "henry@example.com",
         "phone": "5556667777",
@@ -37,7 +37,7 @@ default_users = [
         "messages_received": []
     },
     {
-        "id": -7570964647689087000,
+        "id": "-7570964647689087000",
         "name": "Isabella",
         "email": "isabella@example.com",
         "phone": "8889990000",
@@ -48,7 +48,7 @@ default_users = [
 ]
 
 default_categories = [
-    {"name": CategoryEnum.SPORTS, "subscribers": [681879266808159400]},
-    {"name": CategoryEnum.FILMS, "subscribers": [957748080764321000, -7570964647689087000]},
-    {"name": CategoryEnum.FINANCE, "subscribers": [681879266808159400]},
+    {"name": CategoryEnum.SPORTS, "subscribers": ["681879266808159400"]},
+    {"name": CategoryEnum.FILMS, "subscribers": ["957748080764321000", "-7570964647689087000"]},
+    {"name": CategoryEnum.FINANCE, "subscribers": ["681879266808159400"]},
 ]

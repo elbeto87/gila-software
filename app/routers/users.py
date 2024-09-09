@@ -5,6 +5,7 @@ from tinydb import Query
 
 from app.database import users_table
 from app.schemas import UserModel, UserCreationModel
+from app.subscription.category import Category
 from app.utils import is_id_duplicated, is_there_an_empty_field, add_suscribers_to_category
 
 router = APIRouter(
@@ -21,7 +22,7 @@ def get_users():
 
 @router.post("/", response_model=UserModel)
 def create_user(user: UserCreationModel):
-    user_id = hash(user.name)
+    user_id = str(hash(user.name))
     user_to_add = UserModel(
         id=user_id,
         name=user.name,
@@ -47,6 +48,15 @@ def delete_user(user_id: int):
 
 
 @router.get("/{user_id}/messages_received", response_model=dict)
-def get_messages_received(user_id: int):
-    user = users_table.get(doc_id=user_id)
+def get_messages_received(user_id: str):
+    user = users_table.get(Query().id == user_id)
     return {"name": user["name"], "messages_received": user["messages_received"]}
+
+
+@router.put("/{user_id}/subscribe_to_category/{category_name}")
+def subscribe_to_category(user_id: str, category_name: str):
+    user = users_table.get(Query().id == user_id)
+    if category_name not in user["subscribed"]:
+        Category.from_str(category_name).add_subscriber(user["id"])
+        users_table.update({"subscribed": user["subscribed"]}, doc_ids=[user.doc_id])
+    return {"message": f"User {user['name']} has been subscribed to category {category_name}"}
